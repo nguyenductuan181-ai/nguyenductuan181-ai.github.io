@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workspace Automation Suite - Official Application Homepage</title>
+    <title>Workspace Automation Suite - Personal Productivity Application</title>
     <link rel="icon" type="image/svg+xml" href="app-logo.svg">
     <style>
         :root {
@@ -33,21 +33,21 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            font-size: 20px;
+            font-size: 22px;
             font-weight: 700;
             color: var(--primary);
             text-decoration: none;
         }
         .logo-img {
-            width: 38px;
-            height: 38px;
+            width: 40px;
+            height: 40px;
             border-radius: 8px;
         }
         nav a {
             color: var(--text-dark);
             text-decoration: none;
             margin-left: 20px;
-            font-size: 14px;
+            font-size: 15px;
             font-weight: 500;
         }
         nav a:hover {
@@ -60,7 +60,7 @@
         }
         .hero {
             text-align: center;
-            padding: 20px 0 40px;
+            padding: 20px 0 30px;
         }
         .hero-logo {
             width: 80px;
@@ -68,7 +68,7 @@
             margin-bottom: 20px;
         }
         .hero h1 {
-            font-size: 34px;
+            font-size: 36px;
             color: var(--text-dark);
             margin-bottom: 16px;
         }
@@ -81,46 +81,49 @@
         .badge {
             background: #e8f0fe;
             color: var(--primary);
-            padding: 6px 14px;
+            padding: 6px 16px;
             border-radius: 20px;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 600;
             display: inline-block;
             margin-bottom: 16px;
         }
+        .section-box {
+            background: #ffffff;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 32px;
+            margin: 30px 0;
+            box-shadow: 0 1px 3px rgba(60,64,67,0.05);
+        }
+        .section-box h2 {
+            font-size: 22px;
+            margin-top: 0;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+        }
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 24px;
-            margin: 40px 0;
+            gap: 20px;
+            margin: 24px 0;
         }
         .card {
             background: var(--bg-light);
             border: 1px solid var(--border);
             border-radius: 8px;
-            padding: 24px;
+            padding: 20px;
         }
         .card h3 {
             margin-top: 0;
-            color: var(--primary);
-            font-size: 18px;
+            color: var(--text-dark);
+            font-size: 17px;
         }
         .card p {
-            font-size: 14.5px;
+            font-size: 14px;
             color: var(--text-muted);
             margin-bottom: 0;
-        }
-        .app-purpose {
-            background: #ffffff;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 30px;
-            margin: 40px 0;
-        }
-        .app-purpose h2 {
-            font-size: 22px;
-            margin-top: 0;
-            color: var(--text-dark);
         }
         .footer-links {
             text-align: center;
@@ -162,47 +165,51 @@
     <div class="container">
         <div class="hero">
             <img src="app-logo.svg" alt="Workspace Automation Suite" class="hero-logo"><br>
-            <span class="badge">Verified Executive Workspace Application</span>
+            <span class="badge">Official Application Homepage</span>
             <h1>Workspace Automation Suite</h1>
-            <p>An executive management utility designed to organize personal archives, automate media indexing, and synchronize structured workspace files across Google services.</p>
+            <p>An executive management utility designed to organize personal archives, automate media indexing, and synchronize structured workspace files across Google Workspace services.</p>
         </div>
 
-        <div class="app-purpose">
-            <h2>Purpose and Functionality of Workspace Automation Suite</h2>
-            <p><strong>Workspace Automation Suite</strong> is a private personal productivity application developed and operated by <strong>Nguyen Duc Tuan</strong> (Developer Email: <a href="mailto:nguyenductuan181@gmail.com">nguyenductuan181@gmail.com</a>). The application is built to eliminate repetitive administrative work by connecting to authorized Google Workspace services through secure OAuth 2.0 protocols.</p>
-            <p>The core objective of the application is to help the account owner manage documents, organize photos, and generate operational productivity summaries automatically.</p>
+        <div class="section-box">
+            <h2>1. Application Identity and Purpose</h2>
+            <p><strong>Application Name:</strong> Workspace Automation Suite</p>
+            <p><strong>Developer & Owner:</strong> Nguyen Duc Tuan (<a href="mailto:nguyenductuan181@gmail.com">nguyenductuan181@gmail.com</a>)</p>
+            <p><strong>Purpose of Application:</strong> Workspace Automation Suite is a personal productivity application created to eliminate manual, repetitive administrative tasks for the account owner. The application interacts with authorized Google services via OAuth 2.0 to automate local file archiving, catalog personal media assets, and generate structured operational summaries.</p>
         </div>
 
-        <h2 style="text-align: center; font-size: 24px; margin-top: 40px;">Core Application Capabilities</h2>
-        
-        <div class="features">
-            <div class="card">
-                <h3>1. Media Indexing & Backup</h3>
-                <p>Accesses personal Google Photos metadata to build structured chronological photo catalogs, verify file integrity, and organize local backup directories without manual sorting.</p>
-            </div>
-            <div class="card">
-                <h3>2. Document & Drive Archival</h3>
-                <p>Automates structured folder management on Google Drive, categorizing incoming operational documents and maintaining historical revision backups.</p>
-            </div>
-            <div class="card">
-                <h3>3. Structured Summary Reporting</h3>
-                <p>Reads and writes operational logs and master indices to Google Sheets and Docs, providing clean dashboards of daily productivity workflows.</p>
-            </div>
-            <div class="card">
-                <h3>4. Status Alerts & Schedule Sync</h3>
-                <p>Sends periodic operational progress reports via Gmail and synchronizes administrative milestone reminders with Google Calendar.</p>
+        <div class="section-box">
+            <h2>2. Specific Google Data Requested & Why</h2>
+            <p>The application explicitly requests access to the following Google Workspace user data strictly for user-requested operations:</p>
+            <div class="features">
+                <div class="card">
+                    <h3>Google Photos Access</h3>
+                    <p>Reads photo metadata (timestamps, filenames, album names) to verify backup completeness and build local structured photo catalogs.</p>
+                </div>
+                <div class="card">
+                    <h3>Google Drive Archiving</h3>
+                    <p>Creates folders and organizes authorized workspace files, documents, and historical backups automatically.</p>
+                </div>
+                <div class="card">
+                    <h3>Google Sheets & Docs</h3>
+                    <p>Exports operational summaries, index tables, and structured productivity logs directly into Google Sheets.</p>
+                </div>
+                <div class="card">
+                    <h3>Gmail & Calendar</h3>
+                    <p>Monitors system status notifications and sends operational status summaries to the authorized account owner.</p>
+                </div>
             </div>
         </div>
 
-        <div class="app-purpose" style="background: #fdfdfd;">
-            <h2>Data Protection and User Privacy</h2>
-            <p>Workspace Automation Suite operates strictly for authorized personal accounts. In compliance with Google API Services User Data Policy:</p>
+        <div class="section-box">
+            <h2>3. Privacy, Data Protection, and Limited Use</h2>
+            <p>Workspace Automation Suite adheres strictly to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>, including the <strong>Limited Use</strong> requirements:</p>
             <ul>
-                <li><strong>No Commercial Transfer:</strong> User data is never sold, shared, or transferred to third-party brokers.</li>
-                <li><strong>No Artificial Intelligence Training:</strong> User data is strictly prohibited from being used to train generalized AI/ML models.</li>
-                <li><strong>Owner-Controlled Access:</strong> Permissions can be revoked at any moment via Google Account security dashboard.</li>
+                <li><strong>No Commercial Data Sale:</strong> We never sell, rent, or transfer user data to third parties, advertising platforms, or data brokers.</li>
+                <li><strong>No AI Model Training:</strong> Google user data is strictly prohibited from being used to train generalized artificial intelligence or machine learning models.</li>
+                <li><strong>No Human Access:</strong> No person reads or views raw user files, emails, or photos. All data processing occurs via encrypted local scripts.</li>
+                <li><strong>Revocation at Any Time:</strong> Users can revoke access instantly via the <a href="https://myaccount.google.com/permissions" target="_blank" rel="noopener">Google Account Permissions</a> console.</li>
             </ul>
-            <p>For complete details on data handling practices, please review our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Service</a>.</p>
+            <p>Read our full legal disclosures: <a href="privacy.html"><strong>Privacy Policy</strong></a> &bull; <a href="terms.html"><strong>Terms of Service</strong></a>.</p>
         </div>
 
         <div class="footer-links">
