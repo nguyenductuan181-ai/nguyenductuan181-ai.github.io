@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Toàn Bộ Dữ Liệu Google Drive (Tài Liệu, Video, Sheets, Ảnh...)</title>
+<title>Toàn Bộ Dữ Liệu Google Drive (2 Tài Khoản)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -137,7 +137,7 @@
 
   .file-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 10px;
   }
   @media (max-width: 640px) {
@@ -155,7 +155,6 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    cursor: pointer;
     transition: transform 0.15s, border-color 0.15s;
   }
   .file-card:hover {
@@ -171,7 +170,7 @@
   }
   .file-icon { font-size: 20px; line-height: 1; }
   .file-title {
-    font-size: 12.5px;
+    font-size: 13px;
     font-weight: 600;
     line-height: 1.35;
     word-break: break-word;
@@ -185,6 +184,7 @@
     color: var(--text-muted);
     border-top: 1px solid rgba(255,255,255,0.04);
     padding-top: 8px;
+    gap: 6px;
   }
   .tag {
     padding: 2px 6px;
@@ -192,13 +192,31 @@
     font-size: 10px;
     font-weight: 600;
   }
-  .view-action {
+  .action-group {
+    display: flex;
+    gap: 6px;
+  }
+  .btn-action {
     color: var(--primary);
     font-weight: 700;
     font-size: 11px;
-    background: rgba(56, 189, 248, 0.08);
-    padding: 3px 7px;
-    border-radius: 5px;
+    background: rgba(56, 189, 248, 0.1);
+    padding: 4px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+  }
+  .btn-action:hover {
+    background: rgba(56, 189, 248, 0.2);
+  }
+  .btn-drive {
+    color: #34d399;
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.2);
   }
 
   /* Modal Viewer */
@@ -218,8 +236,11 @@
     padding: 10px 14px;
     background: #0f1422;
     border-bottom: 1px solid var(--border);
+    gap: 10px;
   }
-  .modal-title-box { max-width: 75vw; }
+  .modal-title-box {
+    max-width: 60vw;
+  }
   .modal-title {
     font-size: 13px;
     font-weight: 700;
@@ -227,6 +248,11 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+  .modal-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
   }
   .modal-close-btn {
     background: #1b253b;
@@ -279,7 +305,7 @@
 <div class="container">
   <header>
     <h1>📂 Toàn Bộ Dữ Liệu Google Drive (2 Tài Khoản)</h1>
-    <div><span class="shield-tag">🛡️ Đầy đủ: Docs, Sheets, PDF, Video, Thư mục, Ảnh • Xem Ẩn Danh 100%</span></div>
+    <div><span class="shield-tag">🛡️ Xem Trực Tiếp / Mở Google Drive Bằng 1 Chạm</span></div>
   </header>
 
   <div class="account-switcher">
@@ -318,7 +344,10 @@
     <div class="modal-title-box">
       <div class="modal-title" id="modalTitle">File Viewer</div>
     </div>
-    <button class="modal-close-btn" onclick="closeModal()">Đóng ✕</button>
+    <div class="modal-actions">
+      <a id="modalDirectLink" href="#" target="_blank" class="btn-action btn-drive">Mở Tab Mới ↗</a>
+      <button class="modal-close-btn" onclick="closeModal()">Đóng ✕</button>
+    </div>
   </div>
   <div class="modal-body" id="modalContent"></div>
 </div>
@@ -389,19 +418,28 @@ function renderChunk() {
     return;
   }
 
-  const html = slice.map(f => `
-    <div class="file-card" onclick="viewItem('${f.id}', '${f.name.replace(/'/g, "\\'")}', '${f.cat}')">
-      <div class="card-top">
-        <span class="file-icon">${f.catLabel.split(' ')[0]}</span>
-        <span class="file-title">${f.name}</span>
+  const html = slice.map(f => {
+    const directUrl = f.cat === 'folder' 
+      ? `https://drive.google.com/drive/folders/${f.id}`
+      : `https://drive.google.com/file/d/${f.id}/view`;
+    
+    return `
+      <div class="file-card">
+        <div class="card-top" onclick="viewItem('${f.id}', '${f.name.replace(/'/g, "\\'")}', '${f.cat}')">
+          <span class="file-icon">${f.catLabel.split(' ')[0]}</span>
+          <span class="file-title">${f.name}</span>
+        </div>
+        <div class="card-bottom">
+          <span class="tag" style="background:${f.catColor}1a; color:${f.catColor}">${f.catLabel.split(' ')[1] || f.catLabel}</span>
+          <span>${f.size || f.created || ''}</span>
+          <div class="action-group">
+            <button class="btn-action" onclick="viewItem('${f.id}', '${f.name.replace(/'/g, "\\'")}', '${f.cat}')">👁️ Xem</button>
+            <a href="${directUrl}" target="_blank" class="btn-action btn-drive">Drive ↗</a>
+          </div>
+        </div>
       </div>
-      <div class="card-bottom">
-        <span class="tag" style="background:${f.catColor}1a; color:${f.catColor}">${f.catLabel.split(' ')[1] || f.catLabel}</span>
-        <span>${f.size || f.created || ''}</span>
-        <span class="view-action">Mở xem 👁️</span>
-      </div>
-    </div>
-  `).join('');
+    `;
+  }).join('');
 
   grid.insertAdjacentHTML('beforeend', html);
   currentIndex += slice.length;
@@ -416,20 +454,26 @@ function viewItem(id, name, cat) {
   const modal = document.getElementById('viewerModal');
   const modalTitle = document.getElementById('modalTitle');
   const modalContent = document.getElementById('modalContent');
+  const directLink = document.getElementById('modalDirectLink');
   
   modalTitle.innerText = name;
   
+  const driveViewUrl = cat === 'folder' 
+    ? `https://drive.google.com/drive/folders/${id}` 
+    : `https://drive.google.com/file/d/${id}/view`;
+  
+  directLink.href = driveViewUrl;
+  
   if (cat === 'image') {
     modalContent.innerHTML = `<img src="https://drive.google.com/thumbnail?id=${id}&sz=w1600" alt="${name}" onerror="this.src='https://lh3.googleusercontent.com/d/${id}=s1600'">`;
+    modal.style.display = 'flex';
   } else if (cat === 'folder') {
-    document.getElementById('searchInput').value = name;
-    updateFilter();
-    return;
+    window.open(driveViewUrl, '_blank');
   } else {
+    // Nhúng link xem trực tiếp sạch
     modalContent.innerHTML = `<iframe src="https://drive.google.com/file/d/${id}/preview" allow="autoplay"></iframe>`;
+    modal.style.display = 'flex';
   }
-  
-  modal.style.display = 'flex';
 }
 
 function closeModal() {
